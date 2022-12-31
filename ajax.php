@@ -1,48 +1,28 @@
 <?php
-// $request_body = file_get_contents('php://input');
-// $data = json_decode($request_body,true);
 error_reporting(0);
-
 include "connect.php";
 
 if ($_POST['action'] == "signup") {
-    $name = mysqli_real_escape_string($dbConn, $_POST["name"]);
-    $surname = mysqli_real_escape_string($dbConn, $_POST["surname"]);
-    $phone = mysqli_real_escape_string($dbConn, $_POST["phone"]);
+    $username = mysqli_real_escape_string($dbConn, $_POST["username"]);
     $email = mysqli_real_escape_string($dbConn, $_POST["email"]);
     $password = mysqli_real_escape_string($dbConn, $_POST["password"]);
-    $confirmPassword = mysqli_real_escape_string($dbConn, $_POST["confirmPassword"]);
     $passwordHash = mysqli_real_escape_string($dbConn, password_hash($_POST["password"], PASSWORD_BCRYPT));
+    
     $alphanumericPattern = "/^[a-zA-Z\s]+$/";
     $numericPattern = '/^[0-9]+$/';
     $passwordPattern = '/(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}/';
 
-    if (!preg_match($alphanumericPattern, $name)) {
+    if (!preg_match($alphanumericPattern, $username)) {
         http_response_code(203);
-        $response = array("message" => "Name must be alphanumeric", "errorMessageId" => "nameMessage");
-        echo json_encode($response);
-        exit;
-    }
-
-    if (!preg_match($alphanumericPattern, $surname)) {
-        http_response_code(203);
-        $response = array("message" => "Surname must be alphanumeric", "errorMessageId" => "surnamenameMessage");
-        echo json_encode($response);
-        exit;
-    }
-
-    if (!preg_match($numericPattern, $phone)) {
-        http_response_code(203);
-        $response = array("message" => "Phone must be a number", "errorMessageId" => "phoneMessage");
+        $response = array("message" => "Username must be alphanumeric", "errorMessageId" => "surnamenameMessage");
         echo json_encode($response);
         exit;
     }
 
     $queryCheck = "SELECT id,
-                          email,
-                          phone
+                          email
                    FROM users
-                   WHERE email = '" . $email . "' OR phone = '" . $phone . "'
+                   WHERE email = '" . $email ."'
                   ";
 
     $resultCheck = mysqli_query($dbConn, $queryCheck);
@@ -63,17 +43,8 @@ if ($_POST['action'] == "signup") {
         exit;
     }
 
-    if ($rowCheck['phone'] == $phone) {
-        http_response_code(203);
-        $response = array("message" => "User with that number already exists", "errorMessageId" => "phoneMessage");
-        echo json_encode($response);
-        exit;
-    }
-
     $queryInsert = "INSERT INTO users 
-                    set name = '" . $name . "',
-                    surname = '" . $surname . "',
-                    phone = '" . $phone . "',
+                    set name = '" . $username . "',
                     email = '" . $email . "',
                     password = '" . $passwordHash . "',
                     created_at = '" . date("Y-m-d H:i:s") . "'
@@ -88,7 +59,7 @@ if ($_POST['action'] == "signup") {
         exit;
     } else {
         http_response_code(200);
-        $response = array("message" => "You registered succesfully on our platform");
+        $response = array("message" => "Registration is succesfull");
         echo json_encode($response);
         exit;
     }
