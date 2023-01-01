@@ -3,7 +3,7 @@ function getMovies() {
     url: '../controllers/movies/getMovies.php',
     type: 'GET',
     success: function(response) {
-      const movies = JSON.parse(response);
+      // const movies = JSON.parse(response);
       // let template = '';
       // movies.forEach(task => {
       //   template += `
