@@ -1,5 +1,4 @@
-$(document).on('submit', '#createUser', function (e) {
-  e.preventDefault();
+function createUser() {
   let formData = new FormData(this);
   formData.append("createUser", true);
 
@@ -19,4 +18,9 @@ $(document).on('submit', '#createUser', function (e) {
       }
     }
   });
+}
+
+$(document).on('submit', '#createUser', function (e) {
+  e.preventDefault();
+  createUser();
 });

@@ -1,12 +1,11 @@
-function fetchMovies() {
+function getMovies() {
   $.ajax({
     url: '../controllers/movies/getMovies.php',
     type: 'GET',
     success: function(response) {
       const movies = JSON.parse(response);
-      console.log(movies);
       // let template = '';
-      // tasks.forEach(task => {
+      // movies.forEach(task => {
       //   template += `
       //           <tr taskId="${task.id}">
       //           <td>${task.id}</td>
@@ -29,33 +28,17 @@ function fetchMovies() {
   });
 }
 
-function fetchMovie() {
-  // let movieId = $(this).val();
-  // $.ajax({
-  //   type: "POST",
-  //   url: location.origin + "/movieLandProject/controllers/movies.php?movieId=" + movieId,
-  //   success: function (response) {
-  //     let res = jQuery.parseJSON(response);
-  //     if (res.status == 404) {
-  //       alert(res.message);
-  //     } else if(res.status == 200) 
-  //     {
-  //       // console.log(res) 
-  //       // $('#view_name').text(res.data.name);
-  //     }
-  //   }
-  // });
+function getMovie() {
   const id = 5;
   $.post('../controllers/movies/getMovieById.php', {id}, (response) => {
     const movie = JSON.parse(response);
-    console.log(movie);
   });
 }
 
-$(document).on('submit', '#createMovie', function (e) {
-  e.preventDefault();
+function createMovie() {
   let formData = new FormData(this);
   formData.append("createMovie", true);
+
   $.ajax({
     type: "POST",
     url: "../controllers/movies.php",
@@ -71,9 +54,14 @@ $(document).on('submit', '#createMovie', function (e) {
       }
     }
   });
+}
+
+$(document).on('submit', '#createMovie', function (e) {
+  e.preventDefault();
+  createMovie();
 });
 
 $(document).ready(function(){
-  fetchMovies();
-  fetchMovie();
+  getMovies();
+  getMovie();
 });
