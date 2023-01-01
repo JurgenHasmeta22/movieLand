@@ -1,5 +1,5 @@
 <?php
-require './config/dbConnect.php';
+require '../config/dbConnect';
 
 if(isset($_GET['getUsers']))
 {

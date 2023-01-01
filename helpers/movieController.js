@@ -5,7 +5,7 @@ $(document).on('submit', '#createMovie', function (e) {
 
   $.ajax({
     type: "POST",
-    url: "movies.php",
+    url: location.origin + "/movieLandProject/controllers/movies.php",
     data: formData,
     processData: false,
     contentType: false,
@@ -13,7 +13,8 @@ $(document).on('submit', '#createMovie', function (e) {
       let res = jQuery.parseJSON(response);
 
       if(res.status == 422) {
-      } else if(res.status == 200){ 
+      } else if(res.status == 200){
+        console.log(res) 
       } else if(res.status == 500) {
         alert(res.message);
       }
@@ -26,7 +27,7 @@ $(document).ready(function(){
 
   $.ajax({
     type: "GET",
-    url: "movies.php?movieId=" + movieId,
+    url: location.origin + "/movieLandProject/controllers/movies.php?movieId=" + movieId,
     success: function (response) {
       let res = jQuery.parseJSON(response);
 
@@ -34,11 +35,8 @@ $(document).ready(function(){
         alert(res.message);
       } else if(res.status == 200) 
       {
+        console.log(res) 
         // $('#view_name').text(res.data.name);
-        // $('#view_email').text(res.data.email);
-        // $('#view_phone').text(res.data.phone);
-        // $('#view_course').text(res.data.course);
-        // $('#studentViewModal').modal('show');
       }
     }
   });
@@ -47,7 +45,7 @@ $(document).ready(function(){
 $(document).ready(function(){  
   $.ajax({
     type: "GET",
-    url: "movies.php",
+    url: location.origin + "/movieLandProject/controllers/movies.php",
     success: function (response) {
       let res = jQuery.parseJSON(response);
 
@@ -55,11 +53,8 @@ $(document).ready(function(){
         alert(res.message);
       } else if(res.status == 200) 
       {
+        console.log(res);
         // $('#view_name').text(res.data.name);
-        // $('#view_email').text(res.data.email);
-        // $('#view_phone').text(res.data.phone);
-        // $('#view_course').text(res.data.course);
-        // $('#studentViewModal').modal('show');
       }
     }
   });

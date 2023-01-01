@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-require './config/dbConnect.php';
+require '../config/dbConnect.php';
 
 if(isset($_GET['getMovies']))
 {
