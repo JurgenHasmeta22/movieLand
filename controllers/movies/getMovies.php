@@ -22,16 +22,16 @@ if (mysqli_num_rows($result) > 0)
   $json = array();
   while($row = mysqli_fetch_array($result)) {
     $json[] = array(
-      'id' => $row['id'],
+      'id' =>  intval($row['id']),
       'title' => $row['title'],
       'videosrc' => $row['videosrc'],
       'photosrc' => $row['photosrc'],
       'trailersrc' => $row['trailersrc'],
-      'duration' => $row['duration'],
-      'ratingimdb' => $row['ratingimdb'],
-      'releaseyear' => $row['releaseyear'],
+      'duration' =>  intval($row['duration']),
+      'ratingimdb' =>  floatval($row['ratingimdb']),
+      'releaseyear' =>  intval($row['releaseyear']),
       'description' => $row['description'],
-      'views' => $row['views']
+      'views' =>  intval($row['views'])
     );
   }
   $jsonstring = json_encode($json);

@@ -1,4 +1,4 @@
-<?php include('./includes/header.php'); ?>
+<?php include('includes/header.php'); ?>
 
 <div class="signup-page-wrapper">
   <div class="left-main-wrapper">
@@ -42,7 +42,7 @@
       </label>
       <label id="login-link-wrapper" htmlFor="">
         You have an account?
-        <a id="link" href="./login.php">
+        <a id="link" href="login.php">
           Login
         </a>
       </label>
@@ -50,4 +50,4 @@
   </div>
 </div>
 
-<?php include('./includes/footer.php'); ?>
+<?php include('includes/footer.php'); ?>

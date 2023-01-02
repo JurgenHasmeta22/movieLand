@@ -10,7 +10,6 @@ function createUser() {
     contentType: false,
     success: function (response) {
       let res = jQuery.parseJSON(response);
-
       if(res.status == 422) {
       } else if(res.status == 200){ 
       } else if(res.status == 500) {
