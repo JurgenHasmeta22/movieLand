@@ -1,11 +1,11 @@
-<?php include('../includes/header.php'); ?>
+<?php include('./includes/header.php'); ?>
 
 <div class="signup-page-wrapper">
   <div class="left-main-wrapper">
     <img
       class="special-image-2"
       id="signup-page-img"
-      src="../assets/images/netflix.png"
+      src="assets/images/netflix.png"
       alt=""
     />
   </div>
@@ -50,4 +50,4 @@
   </div>
 </div>
 
-<?php include('../includes/footer.php'); ?>
+<?php include('./includes/footer.php'); ?>

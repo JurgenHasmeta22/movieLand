@@ -1,5 +1,5 @@
 <div class="home-wrapper-menus">
-<?php include('../includes/header.php'); ?>
+<?php include('./includes/header.php'); ?>
 <!-- {(params.query === undefined || params.query.length === 0) &&
 movies[0]?.title !== undefined ? ( -->
   <div class="home-ribbon-1">
@@ -56,5 +56,5 @@ movies[0]?.title !== undefined ? ( -->
     </div>
   <!-- )} -->
 </div>
-<?php include('../includes/footer.php'); ?>
+<?php include('./includes/footer.php'); ?>
 </div>

@@ -19,7 +19,7 @@
   />
   <link rel="shortcut icon" href="assets/logos/ico_filma_blu.png" />
   <title>MovieLand24 - Your Movie streaming app of choice</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <header class="header">
@@ -30,7 +30,7 @@
     <a href="/movies">MovieLand24</a>
     <ul class="list-nav">
       <div class="div-inside-li">
-        <img src="../assets/logos/ico_filma_blu.png" alt="" />
+        <img src="assets/logos/ico_filma_blu.png" alt="" />
         <a href="../movies" class="special-uppercase">
           Movies
         </a>

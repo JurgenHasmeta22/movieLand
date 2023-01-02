@@ -1,4 +1,5 @@
-<?php include('../includes/header.php'); ?>
+<?php include('./includes/header.php'); ?>
+
 <section class="movie-item-wrapper">
   <div class="left-section">
     <div class="video-and-servers">
@@ -64,4 +65,5 @@
     </div>
   </div>
 </section>
-<?php include('../includes/footer.php'); ?>
+
+<?php include('./includes/footer.php'); ?>
