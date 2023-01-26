@@ -1,3 +1,62 @@
+<?php
+  include('./config/dbConnect.php');
+
+  if(isset($_POST['register']) && isset($_POST['username'])) {
+    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+
+    $alphanumericPattern = "/^[a-zA-Z\s]+$/";
+    $numericPattern = '/^[0-9]+$/';
+    $passwordPattern = '/(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}/';
+
+    if ($password == NULL && !preg_match($passwordPattern, $password)) {
+      echo("Password must be like the pattern");
+    }
+
+    if (
+      $username == NULL || 
+      $email == NULL || 
+      $password == NULL
+    )
+    {
+      echo("All fields must be mandatory.");
+    }
+
+    $queryCheck = "SELECT id,
+                    username,
+                    email,
+                    password
+                    FROM user
+                    WHERE email = '" . $email ."'
+                  ";
+
+    $resultCheck = mysqli_query($dbConn, $queryCheck);
+
+    if (!$resultCheck){
+      echo("Internal server error");
+    }
+
+    $rowCheck = mysqli_fetch_assoc($resultCheck);
+
+    if ($rowCheck['email'] == $email) {
+      echo("User with that E-Mail already exists");
+    }
+
+    $query = "INSERT INTO users (userName, email, password) VALUES ('$username', '$email', '$photoSrc', '$password')";
+    $query_run = mysqli_query($con, $query);
+
+    if($query_run)
+    {
+      echo("User created successfully");
+    }
+    else
+    {
+      echo("User not created");
+    }
+  }
+?>
+
 <?php include('includes/header.php'); ?>
 
 <div class="signup-page-wrapper">
@@ -12,6 +71,7 @@
   <div class="right-main-wrapper">
     <form
       id="signup-form"
+      method="post"
     >
       <h1>MovieLandia24</h1>
       <label id="username" htmlFor="">
@@ -38,7 +98,7 @@
         />
       </label>
       <label htmlFor="">
-        <button>Register</button>
+        <button name="register" type="submit">Register</button>
       </label>
       <label id="login-link-wrapper" htmlFor="">
         You have an account?

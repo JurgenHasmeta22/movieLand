@@ -12,16 +12,3 @@
   </div>
   <?php include('includes/footer.php'); ?>
 </div>
-
-<script type="text/javascript" src="helpers/movieController.js"></script>
-<script>
-  $(document).ready(function(){
-    getMovies();
-  });
-  // $('.movie-item').click(function() {
-  //   location.href = "movieDetails.php?movieId="+$(this).attr('data-id');
-  // })
-  // $('.views').click(function() {
-  //   location.href = "movieDetails.php?movieId="+$(this).attr('data-id');
-  // })
-</script>
