@@ -1,6 +1,6 @@
-<?php 
+<?php
   include('./config/dbConnect.php');
-
+  
   if (isset($_GET['page'])) {
     $page = $_GET['page'];
   } else {
@@ -20,7 +20,7 @@
   if (mysqli_num_rows($result) > 0) {
     $moviesArray= mysqli_fetch_all($result , MYSQLI_ASSOC);
   }
-  else {
+  else{
     die();
   }
 ?>

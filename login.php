@@ -1,52 +1,23 @@
-<?php 
+<?php
+	session_start();
   include('./config/dbConnect.php');
-
-	$message = "";
 	
 	if (isset($_POST['login'])) {
-		if (!isset($_SESSION['attempts'])) {
-			$_SESSION['attempts'] = 0;
-		}
-
-		if ($_SESSION['attempts'] == 3) {
-			$message = 'You have tried 3 times to login without success, please try again later.';
-		}
-
-		if (isset($_SESSION['attemptsAgain'])) {
-			$now = time();
-
-			if ($now >= $_SESSION['attemptsAgain']) {
-				unset($_SESSION['attempts']);
-				unset($_SESSION['attemptsAgain']);
-			}
-		}
-
-		if (isset($_POST['username']) && isset($_POST['password']) && $_SESSION['attempts'] < 3) {
+		if (isset($_POST['username']) && isset($_POST['password'])) {
 			$username = $_POST['username'];
 			$password = $_POST['password'];
-      // $encryptedPassword = md5($password);
 			$query = "SELECT * FROM user WHERE username='$username' AND passwordi='$password'";
 			$result = mysqli_query($con, $query);
 			$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 			if (mysqli_num_rows($result) == 1) {
 				$_SESSION['id'] = $rows[0]['id'];
-				unset($_SESSION['attempts']);
+        $_SESSION['username'] = $rows[0]['username'];
 				header("location: index.php");
-				unset($_SESSION['attempts']);
-			} else {
-				$mesazh = "Data is not valid";
-				$_SESSION['attempts'] += 1;
-				echo($mesazh);
-
-				if ($_SESSION['attempts'] == 3) {
-					$_SESSION['attemptsAgain'] = time() + (5);
-				}
+        die();
 			}
 		}
 	}
-  
-	mysqli_close($con);
 ?>
 
 <!doctype html>
@@ -74,7 +45,6 @@
   </head>
 
   <body>
-    <?php include('includes/header.php'); ?>
     <div class="login-page-wrapper">
       <div class="left-main-wrapper">
         <img
@@ -117,7 +87,6 @@
         </form>
       </div>
     </div>
-    <?php include('includes/footer.php'); ?>
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

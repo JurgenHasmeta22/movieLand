@@ -1,11 +1,11 @@
 <body>
   <header class="header">
     <div class="header-group-1">
-      <a href="/movies">MovieLand24</a>
+      <a href="http://localhost/movieLandProject/index.php">MovieLand24</a>
       <ul class="list-nav">
         <div class="div-inside-li">
           <img src="assets/logos/ico_filma_blu.png" alt="" />
-          <a href="../movies" class="special-uppercase">
+          <a href="http://localhost/movieLandProject/index.php" class="special-uppercase">
             Movies
           </a>
         </div>
@@ -25,11 +25,20 @@
           <i class="fa fa-search"></i>
         </button>
       </form>
-        <button
-          class="button-login-header"
-        >
-          <i class="material-icons special-icon">account_circle</i>
-          Sign In
-        </button>
+        <?php 	
+          session_start();
+          if(!isset($_SESSION['id'])) { ?>
+            <button
+              class="button-login-header"
+            >
+              <i class="material-icons special-icon">account_circle</i>
+              <a href="http://localhost/movieLandProject/login.php">Sign In</a>
+            </button>
+          <?php } 
+          else { ?>
+            <span>Welcome <?php if(isset($_SESSION['username'])) echo $_SESSION['username'] ?> </span>
+            <a href="http://localhost/movieLandProject/logout.php">Logout</a>
+          <?php } 
+        ?>
     </div>
   </header>

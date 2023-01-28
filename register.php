@@ -65,7 +65,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
-    <?php include('includes/header.php'); ?>
     <div class="signup-page-wrapper">
       <div class="left-main-wrapper">
         <img
@@ -118,7 +117,6 @@
         </form>
       </div>
     </div>
-    <?php include('includes/footer.php'); ?>
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
