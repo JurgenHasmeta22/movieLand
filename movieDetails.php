@@ -74,11 +74,6 @@
                   <?php echo $movieDetails['ratingimdb']; ?>
                 </li>
               </ul>
-                <button
-                  class="button-favorite-add"
-                >
-                  Add to favorites
-                </button>
             </div>
           </div>
         </div>

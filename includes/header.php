@@ -36,8 +36,10 @@
             </button>
           <?php } 
           else { ?>
-            <span>Welcome <?php if(isset($_SESSION['username'])) echo $_SESSION['username'] ?> </span>
-            <a href="http://localhost/movieLandProject/logout.php">Logout</a>
+            <div class="logout">
+              <span>Welcome <?php if(isset($_SESSION['username'])) echo $_SESSION['username'] ?> </span>
+              <a href="http://localhost/movieLandProject/logout.php">Logout</a>
+            </div>
           <?php } 
         ?>
     </div>

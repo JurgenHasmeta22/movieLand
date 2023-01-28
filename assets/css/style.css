@@ -415,6 +415,25 @@ header.header .header-group-2 {
   padding-left: 250px;
 }
 
+.logout {
+  display: grid;
+  grid-template-rows: auto 10px;
+  place-items: center;
+}
+
+.logout span {
+  font-size: 14px;
+  color: #da6435;
+  font-weight: 700;
+}
+
+.logout a {
+  padding-top: 30px;
+  font-size: 14px;
+  color: #da6435;
+  font-weight: 700;
+}
+
 .button-login-header {
   font-size: 16px;
   font-weight: 700;
@@ -605,7 +624,7 @@ header .dropdown:hover .dropdown-content {
 .home-wrapper-menus {
   display: grid;
   grid-template:
-    "ribbon" 400vh /
+    "ribbon" auto /
     1fr;
   height: auto;
   grid-gap: 30px;
@@ -624,6 +643,54 @@ header .dropdown:hover .dropdown-content {
   grid-template-rows: 0.7fr 0.15fr 0.15fr;
   grid-gap: 10px;
   cursor: pointer;
+}
+
+.pagination {
+  margin-bottom: 20px;
+  padding-left: 100px;
+  display: inline-block;
+}
+
+.pagination a {
+  padding: 11px 20px;
+  margin: 0px -0.5px;
+  height: auto;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(250, 53, 53);
+  position: relative;
+  height: auto;
+}
+
+.pagination a:hover {
+  background-color: #267fe6;
+  color: white;
+}
+
+.pagination .active {
+  background-color: #267fe6;
+  color: white;
+}
+
+.pagination .nav-link {
+  color: white;
+  background-color: #267fe6;
+  border: 2px #267fe6 solid;
+  padding: 10px 20px;
+}
+
+.pagination .nav-link-left {
+  border-radius: 5px 0px 0px 5px;
+  margin-right: -5px;
+}
+
+.pagination .nav-link-right {
+  border-radius: 0px 5px 5px 0px;
+  margin-left: -5px;
+}
+
+.pagination .links {
+  border: 0.5px #cacaca solid;
 }
 
 .home-wrapper-menus .home-ribbon-2 .movie-item:hover {
@@ -665,7 +732,7 @@ header .dropdown:hover .dropdown-content {
 .home-wrapper-menus .home-ribbon-2 {
   grid-area: ribbon;
   display: grid;
-  grid-template-rows: 50px 0.1fr 0.1fr auto;
+  grid-template-rows: auto 200px;
   grid-gap: 20px;
   height: auto;
 }

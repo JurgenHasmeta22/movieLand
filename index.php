@@ -65,6 +65,21 @@
             </div>
           <?php } ?>
         </div>
+        <ul class="pagination">
+          <a class="nav-link-left nav-link" href="?page=1"><i class="fas fa-angle-double-left"></i></a>
+          <a class="nav-link" href="<?php if($page <= 1){echo '#';} else { echo "?page=".$page -1;} ?>"><i class="fas fa-caret-left"></i></a>
+          <?php 
+            for($i = 1; $i <= $totalPages; $i++) {
+              if($page == $i) {
+                echo "<a class='active links' href='?page=$i'>".$i."</a>";
+              } else{
+                echo "<a class='links' href='?page=$i'>".$i."</a>";
+              }
+            }
+          ?>
+          <a class="nav-link" href="<?php if($page == $totalPages ) { echo '#'; }else { echo "?page=".$page + 1; } ?>"><i class="fas fa-caret-right"></i></a>
+          <a class="nav-link-right nav-link" href="?page=<?php echo $totalPages; ?>"><i class="fas fa-angle-double-right"></i></a>
+        </ul>
       </div>
     </div>
     <?php include('includes/footer.php'); ?>
