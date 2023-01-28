@@ -301,7 +301,6 @@ li {
 
 header.header {
   grid-area: header;
-
   width: 100%;
   display: grid;
   grid-template:
@@ -606,9 +605,7 @@ header .dropdown:hover .dropdown-content {
 .home-wrapper-menus {
   display: grid;
   grid-template:
-    "header" 100px
-    "ribbon" auto
-    "footer" 200px /
+    "ribbon" 400vh /
     1fr;
   height: auto;
   grid-gap: 30px;
@@ -624,7 +621,7 @@ header .dropdown:hover .dropdown-content {
 
 .home-wrapper-menus .home-ribbon-2 .movie-item {
   display: grid;
-  grid-template-rows: 0.7fr 0.1fr 0.1fr 0.1fr;
+  grid-template-rows: 0.7fr 0.15fr 0.15fr;
   grid-gap: 10px;
   cursor: pointer;
 }

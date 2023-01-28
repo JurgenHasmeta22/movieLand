@@ -25,7 +25,7 @@
 			$username = $_POST['username'];
 			$password = $_POST['password'];
       // $encryptedPassword = md5($password);
-			$query = "SELECT * FROM user WHERE userName='$username' AND password='$password'";
+			$query = "SELECT * FROM user WHERE username='$username' AND passwordi='$password'";
 			$result = mysqli_query($con, $query);
 			$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -49,47 +49,79 @@
 	mysqli_close($con);
 ?>
 
-<?php include('includes/header.php'); ?>
-
-<div class="login-page-wrapper">
-  <div class="left-main-wrapper">
-    <img
-      class="special-image-1"
-      id="login-page-img"
-      src="assets/images/netflix.png"
-      alt=""
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
     />
-  </div>
-  <div class="right-main-wrapper">
-    <form id="login-form" method="post">
-      <h1>MovieLandia24</h1>
-      <label htmlFor="">
-        <input
-          type="text"
-          name="username"
-          placeholder="Enter your username"
-          required
-        />
-      </label>
-      <label htmlFor="">
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          required
-        />
-      </label>
-      <label htmlFor="">
-        <input id="button-login" type="submit" name="login" value="Login" />
-      </label>
-      <label id="signup-link-wrapper" htmlFor="">
-        Don't have an account?
-        <a id="link" href="register.php">
-          Sign Up
-        </a>
-      </label>
-    </form>
-  </div>
-</div>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="assets/logos/ico_filma_blu.png" />
+    <title>MovieLand24 - Your Movie streaming app of choice</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
 
-<?php include('includes/footer.php'); ?>
+  <body>
+    <?php include('includes/header.php'); ?>
+    <div class="login-page-wrapper">
+      <div class="left-main-wrapper">
+        <img
+          class="special-image-1"
+          id="login-page-img"
+          src="assets/images/netflix.png"
+          alt=""
+        />
+      </div>
+      <div class="right-main-wrapper">
+        <form id="login-form" method="post">
+          <h1>MovieLandia24</h1>
+          <label htmlFor="">
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              required
+            />
+          </label>
+          <label htmlFor="">
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+          </label>
+          <label htmlFor="">
+            <button id="button-login" type="submit" name="login"> 
+              Login
+            </button>
+          </label>
+          <label id="signup-link-wrapper" htmlFor="">
+            Don't have an account?
+            <a id="link" href="register.php">
+              Sign Up
+            </a>
+          </label>
+        </form>
+      </div>
+    </div>
+    <?php include('includes/footer.php'); ?>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
