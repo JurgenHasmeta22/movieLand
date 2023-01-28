@@ -14,10 +14,11 @@
     <div class="header-group-2">
       <form
         class="button-search"
+        method="get"
       >
         <input
-          type="search"
-          name="searchMovie"
+          type="text"
+          name="search"
           placeholder="Search for movies..."
           aria-label="Search through site content"
         />
