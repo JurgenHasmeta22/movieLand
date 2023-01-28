@@ -18,7 +18,7 @@
   $result = mysqli_query($con, $query);
   
   if (mysqli_num_rows($result) > 0) {
-    $moviesArray= mysqli_fetch_all($result , MYSQLI_ASSOC);
+    $moviesArray = mysqli_fetch_all($result , MYSQLI_ASSOC);
   }
   else{
     die();
@@ -54,7 +54,11 @@
       <div class="home-ribbon-2">
         <div class="image-ribbon-2-wrapper">
           <?php foreach($moviesArray as $movie) { ?>
-            <div class="movie-item" data-id=<?php echo $movie['id']; ?> >
+            <div 
+              class="movie-item" 
+              data-id=<?php echo $movie['id']; ?> 
+              onclick="location.href=`/movieLandProject/movieDetails.php?id=<?php echo $movie['id']; ?>`" 
+            >
               <img src=<?php echo $movie['photosrc']; ?> />
               <span class="movie-title"><?php echo $movie['title']; ?></span>
               <span class="imdb-span"><?php echo $movie['ratingimdb']; ?></span>

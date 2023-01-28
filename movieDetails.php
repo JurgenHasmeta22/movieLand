@@ -1,3 +1,20 @@
+<?php
+  include('./config/dbConnect.php');
+
+  if(isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = "SELECT * FROM movie WHERE id='$id'";
+    $result = mysqli_query($con, $query);
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    if(mysqli_num_rows($result) == 1) {
+      $movieDetails = $rows[0];
+    } else {
+      die();
+    }
+  }
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -33,7 +50,7 @@
           </div>
           <div class="video-square">
             <iframe
-              src=${movie.videosrc}
+              src=<?php echo $movieDetails['videosrc']; ?>
               name="movieFrame"
               scrolling="no"
               frameBorder="0"
@@ -46,18 +63,15 @@
             <div class="movie-specifications">
               <ul class="trailer">
                 <li>Trailer: </li>
-                <a href=${movie.trailersrc} class="trailer-link">
+                <a href=<?php echo $movieDetails['trailersrc']; ?> class="trailer-link">
                   Youtube trailer
                 </a>
               </ul>
               <ul class="length">
-                <li>Duration: ${movie.duration}</li>
-                <li>Year: ${movie.releaseyear}</li>
+                <li>Duration: <?php echo $movieDetails['duration']; ?></li>
+                <li>Year: <?php echo $movieDetails['releaseyear']; ?></li>
                 <li>
-                  Imdb Rating:
-                  ${movie.ratingimdb === 0
-                    ? "N/A"
-                    : movie.ratingimdb}
+                  <?php echo $movieDetails['ratingimdb']; ?>
                 </li>
               </ul>
                 <button
@@ -69,7 +83,7 @@
           </div>
         </div>
         <div class="movie-fabula">
-          <p id="fabula">${movie.description}</p>
+          <p id="fabula"><?php echo $movieDetails['description']; ?></p>
         </div>
       </div>
     </section>
