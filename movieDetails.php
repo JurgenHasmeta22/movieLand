@@ -71,7 +71,7 @@
                 <li>Duration: <?php echo $movieDetails['duration']; ?></li>
                 <li>Year: <?php echo $movieDetails['releaseyear']; ?></li>
                 <li>
-                  <?php echo $movieDetails['ratingimdb']; ?>
+                  Rating imdb: <?php if ($movieDetails['ratingimdb'] === "0") echo "N/A"; else echo $movieDetails['ratingimdb']; ?></span>
                 </li>
               </ul>
             </div>

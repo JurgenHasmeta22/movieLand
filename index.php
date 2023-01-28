@@ -1,58 +1,41 @@
 <?php
   include('./config/dbConnect.php');
-  
+
   if (isset($_GET['page'])) {
     $page = $_GET['page'];
   } else {
     $page = 1;
   }
-  
-  // if (isset($_GET['search'])) {
-  //   echo $_GET['search'];
-  // }
+
+  if (isset($_GET['search'])) {
+    $search = $_GET['search'];
+  }
 
   $nrOfRecordPerPage = 20;
-  $offset = ($page - 1) * $nrOfRecordPerPage; 
-  $totalPages = "SELECT COUNT(*) FROM movie";
+  $offset = ($page - 1) * $nrOfRecordPerPage;
+  
+  if (!isset($_GET['search'])) {
+    $totalPages = "SELECT COUNT(*) FROM movie";
+  } else {
+    $totalPages = "SELECT COUNT(*) FROM movie WHERE title LIKE '$search%'";
+  }
+  
   $result = mysqli_query($con, $totalPages);
   $totalRows = mysqli_fetch_array($result)[0];
   $totalPages = ceil($totalRows / $nrOfRecordPerPage);
   
-  $query = "SELECT * FROM movie LIMIT $offset, $nrOfRecordPerPage";
+  if (isset($_GET['search'])) {
+    $query = "SELECT * FROM movie WHERE title LIKE '%$search%' LIMIT $offset, $nrOfRecordPerPage";
+  } else {
+    $query = "SELECT * FROM movie LIMIT $offset, $nrOfRecordPerPage";
+  }
+
   $result = mysqli_query($con, $query);
   
   if (mysqli_num_rows($result) > 0) {
     $moviesArray = mysqli_fetch_all($result , MYSQLI_ASSOC);
   } else {
     die();
-  }
-?>
-
-<?php
-  if (isset($_GET['search'])) $search = $_GET['search'];
-
-  if(!empty($search)) {
-    if (isset($_GET['page'])) {
-      $page = $_GET['page'];
-    } else {
-      $page = 1;
-    }
-    
-    $nrOfRecordPerPage = 20;
-    $offset = ($page - 1) * $nrOfRecordPerPage; 
-    $totalPages = "SELECT COUNT(*) FROM movie WHERE title LIKE '$search%'";
-    $result = mysqli_query($con, $totalPages);
-    $totalRows = mysqli_fetch_array($result)[0];
-    $totalPages = ceil($totalRows / $nrOfRecordPerPage);
-
-    $query = "SELECT * FROM movie WHERE title LIKE '%$search%' LIMIT $offset, $nrOfRecordPerPage";
-    $result = mysqli_query($con, $query);
-    
-    if (mysqli_num_rows($result) > 0) {
-      $moviesArray = mysqli_fetch_all($result , MYSQLI_ASSOC);
-    } else {
-      die();
-    }
   }
 ?>
 
@@ -92,13 +75,23 @@
             >
               <img src=<?php echo $movie['photosrc']; ?> />
               <span class="movie-title"><?php echo $movie['title']; ?></span>
-              <span class="imdb-span"><?php echo $movie['ratingimdb']; ?></span>
+              <span class="imdb-span">Rating imdb: <?php if ($movie['ratingimdb'] === "0") echo "N/A"; else echo $movie['ratingimdb']; ?></span>
             </div>
           <?php } ?>
         </div>
         <ul class="pagination">
-          <a class="nav-link-left nav-link" href="?page=1"><i class="fas fa-angle-double-left"></i></a>
-          <a class="nav-link" href="<?php if($page <= 1){echo '#';} else { echo "?page=".$page -1;} ?>"><i class="fas fa-caret-left"></i></a>
+          <a 
+            class="nav-link-left nav-link" 
+            href="?page=1"
+          >
+            <i class="fas fa-angle-double-left"></i>
+          </a>
+          <a 
+            class="nav-link" 
+            href="<?php if($page <= 1) { echo '#'; } else { echo "?page=".$page - 1; } ?>"
+          >
+            <i class="fas fa-caret-left"></i>
+          </a>
           <?php 
             for($i = 1; $i <= $totalPages; $i++) {
               if($page == $i) {
@@ -108,8 +101,18 @@
               }
             }
           ?>
-          <a class="nav-link" href="<?php if($page == $totalPages ) { echo '#'; }else { echo "?page=".$page + 1; } ?>"><i class="fas fa-caret-right"></i></a>
-          <a class="nav-link-right nav-link" href="?page=<?php echo $totalPages; ?>"><i class="fas fa-angle-double-right"></i></a>
+          <a 
+            class="nav-link" 
+            href="<?php if($page == $totalPages ) { echo '#'; } else { echo "?page=".$page + 1; } ?>"
+          >
+            <i class="fas fa-caret-right"></i>
+          </a>
+          <a 
+            class="nav-link-right nav-link" 
+            href="?page=<?php echo $totalPages; ?>"
+          >
+            <i class="fas fa-angle-double-right"></i>
+          </a>
         </ul>
       </div>
     </div>

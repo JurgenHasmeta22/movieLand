@@ -28,20 +28,14 @@
       </form>
         <?php 	
           session_start();
-          if(!isset($_SESSION['id'])) { ?>
-            <button
-              class="button-login-header"
-            >
-              <i class="material-icons special-icon">account_circle</i>
-              <a href="http://localhost/movieLandProject/login.php">Sign In</a>
-            </button>
-          <?php } 
-          else { ?>
-            <div class="logout">
-              <span>Welcome <?php if(isset($_SESSION['username'])) echo $_SESSION['username'] ?> </span>
-              <a href="http://localhost/movieLandProject/logout.php">Logout</a>
-            </div>
-          <?php } 
-        ?>
+
+          if (!isset($_SESSION['id'])) {
+            header("Location: login.php");
+          } ?>
+
+          <div class="logout">
+            <span>Welcome <?php if(isset($_SESSION['username'])) echo $_SESSION['username'] ?></span>
+            <a href="http://localhost/movieLandProject/logout.php">Logout</a>
+          </div>
     </div>
   </header>

@@ -690,7 +690,7 @@ header .dropdown:hover .dropdown-content {
 }
 
 .pagination .links {
-  border: 0.5px #cacaca solid;
+  border: 1px #fcdddd solid;
 }
 
 .home-wrapper-menus .home-ribbon-2 .movie-item:hover {
