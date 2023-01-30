@@ -56,7 +56,7 @@
       </div>
       <div class="right-main-wrapper">
         <form id="login-form" method="post">
-          <h1>MovieLandia24</h1>
+          <h1>Login</h1>
           <label htmlFor="">
             <input
               type="text"

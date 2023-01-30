@@ -25,7 +25,8 @@
   $totalPages = ceil($totalRows / $nrOfRecordPerPage);
   
   if (isset($_GET['search'])) {
-    $query = "SELECT * FROM movie WHERE title LIKE '%$search%' LIMIT $offset, $nrOfRecordPerPage";
+    $query = "SELECT * FROM movie WHERE title LIKE '%$search%'";
+    // $query = "SELECT * FROM movie WHERE title LIKE '%$search%' LIMIT $offset, $nrOfRecordPerPage";
   } else {
     $query = "SELECT * FROM movie LIMIT $offset, $nrOfRecordPerPage";
   }
@@ -37,7 +38,7 @@
     $isMoviesLoaded = true;
   } else {
     $isMoviesLoaded = false;
-    die();
+    // die();
   }
 ?>
 
@@ -69,7 +70,7 @@
     <div class="home-wrapper-menus">
       <div class="home-ribbon-2">
         <div class="image-ribbon-2-wrapper">
-          <?php foreach($moviesArray as $movie) { ?>
+          <?php if (isset($moviesArray) && $isMoviesLoaded) { foreach ($moviesArray as $movie) { ?>
             <div 
               class="movie-item" 
               data-id=<?php echo $movie['id']; ?> 
@@ -78,6 +79,10 @@
               <img src=<?php echo $movie['photosrc']; ?> />
               <span class="movie-title"><?php echo $movie['title']; ?></span>
               <span class="imdb-span">Rating imdb: <?php if ($movie['ratingimdb'] === "0") echo "N/A"; else echo $movie['ratingimdb']; ?></span>
+            </div>
+          <?php } } else { ?>
+            <div class="movies-error">
+              <span>No movies matches the search criteria.</span>
             </div>
           <?php } ?>
         </div>

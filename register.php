@@ -79,7 +79,7 @@
           id="signup-form"
           method="post"
         >
-          <h1>MovieLandia24</h1>
+          <h1>Register</h1>
           <label id="username" htmlFor="">
             <input
               type="text"
