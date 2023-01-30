@@ -8,7 +8,7 @@
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     if(mysqli_num_rows($result) == 1) {
-      $movieDetails = $rows[0];
+      $movie = $rows[0];
     } else {
       die();
     }
@@ -50,7 +50,7 @@
           </div>
           <div class="video-square">
             <iframe
-              src=<?php echo $movieDetails['videosrc']; ?>
+              src=<?php echo $movie['videosrc']; ?>
               name="movieFrame"
               scrolling="no"
               frameBorder="0"
@@ -63,22 +63,22 @@
             <div class="movie-specifications">
               <ul class="trailer">
                 <li>Trailer: </li>
-                <a href=<?php echo $movieDetails['trailersrc']; ?> class="trailer-link">
+                <a href=<?php echo $movie['trailersrc']; ?> class="trailer-link">
                   Youtube trailer
                 </a>
               </ul>
               <ul class="length">
-                <li>Duration: <?php echo $movieDetails['duration']; ?></li>
-                <li>Year: <?php echo $movieDetails['releaseyear']; ?></li>
+                <li>Duration: <?php echo $movie['duration']; ?></li>
+                <li>Year: <?php echo $movie['releaseyear']; ?></li>
                 <li>
-                  Rating imdb: <?php if ($movieDetails['ratingimdb'] === "0") echo "N/A"; else echo $movieDetails['ratingimdb']; ?></span>
+                  Rating imdb: <?php if ($movie['ratingimdb'] === "0") echo "N/A"; else echo $movie['ratingimdb']; ?></span>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div class="movie-fabula">
-          <p id="fabula"><?php echo $movieDetails['description']; ?></p>
+          <p id="fabula"><?php echo $movie['description']; ?></p>
         </div>
       </div>
     </section>
